@@ -204,7 +204,9 @@ You need to create first the post directory and then the file `index.tsx` inside
 
 And then to do the dynamic routing you have to create a folder with the name of the parameter with a `$` at the beginning and then create the `index.tsx` file inside it.
 
-And that's how you can create a dynamic route with the file router mode of the Fast Start STACK.
+![dynamic post](assets/dynamic-post.png)
+
+And that's how you can create a dynamic route on TanStack Start.
 
 ![simple dynamic routing](assets/dynamic-routing.png)
 
