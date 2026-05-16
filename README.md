@@ -160,4 +160,40 @@ You only have to do a `pnpm dev` and you will see the new page in the browser:
 
 ![simple about](assets/about.png)
 
+## Non the less, the users don't navigate normaly with the URL, so we need to add a link to the about
+
+So I put a link on both home and about page to navigate between them:
+
+```tsx
+import { createFileRoute, Link } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/')({ component: Home })
+
+function Home() {
+  return (
+    <div className="p-8">
+      <h1>Hello world!!</h1>  
+      <Link to='/about'>Go to About page!!!</Link>
+    </div>
+  )
+}
+```
+
+```tsx
+import { createFileRoute, Link } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/about')({
+  component: RouteComponent,
+})
+
+function RouteComponent() {
+  return (
+    <>
+      <div>Hello "/about"!</div>
+      <Link to="/">Go to home page!!!</Link>
+    </>
+  )
+}
+```
+
 ## And that's all for this fast start tutorial :)
