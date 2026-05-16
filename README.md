@@ -229,4 +229,44 @@ So now if you go to `http://localhost:3000/posts/dinamic` you will see the messa
 
 ![dynamic post](assets/dynamic-post-useParams.png)
 
+### Okey lets now create a edit and a new post page:
+
+The new post page will be `tanstart-start-tutorial\src\routes\posts\new.tsx` and the edit post page will be `tanstart-start-tutorial\src\routes\posts\$postId\edit.tsx`.
+
+Why?, because the `new post` page is from a post that does `not exist` yet, so it is a `static route` and the `edit post` page is a `dynamic route` because it's from an `existing` post.
+
+Let's start with the `new post` that is yust like other static routes, but in the post directoy:
+
+You create the new directory and then the `index.tsx` file inside it:
+
+Now you can access to the `new post` page with `http://localhost:3000/posts/new`:
+
+![new post](assets/new-post.png)
+
+Now let's go for the fun one, creating the `edit post` page:
+
+You nid to create a new directory in the already dynamic directory `$postId`, and create a dyectory edit or even you can do the file directly with the name `edit.tsx`.
+
+I've created the directory and then the `index.tsx` file inside it. But you can do it aswell directly with the file `edit.tsx`:
+
+Then you have to do the same of useParams to get the postId and then you can use it to edit the post:
+
+```tsx
+import { createFileRoute } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/posts/$postId/edit/')({
+  component: RouteComponent,
+})
+
+function RouteComponent() {
+    const { postId } = Route.useParams();
+  return <div>Hello {postId}!</div>
+}
+```
+
+Now you can access to the `edit post` page with `http://localhost:3000/posts/dinamic/edit`:
+
+![edit post](assets/edit-post.png)
+
+
 ## And that's all for this fast TanStart Stack tutorial :)

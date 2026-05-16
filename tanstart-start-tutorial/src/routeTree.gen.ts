@@ -12,7 +12,9 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PostsIndexRouteImport } from './routes/posts/index'
+import { Route as PostsNewIndexRouteImport } from './routes/posts/new/index'
 import { Route as PostsPostIdIndexRouteImport } from './routes/posts/$postId/index'
+import { Route as PostsPostIdEditIndexRouteImport } from './routes/posts/$postId/edit/index'
 
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
@@ -29,9 +31,19 @@ const PostsIndexRoute = PostsIndexRouteImport.update({
   path: '/posts/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PostsNewIndexRoute = PostsNewIndexRouteImport.update({
+  id: '/posts/new/',
+  path: '/posts/new/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PostsPostIdIndexRoute = PostsPostIdIndexRouteImport.update({
   id: '/posts/$postId/',
   path: '/posts/$postId/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PostsPostIdEditIndexRoute = PostsPostIdEditIndexRouteImport.update({
+  id: '/posts/$postId/edit/',
+  path: '/posts/$postId/edit/',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -40,12 +52,16 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/posts/': typeof PostsIndexRoute
   '/posts/$postId/': typeof PostsPostIdIndexRoute
+  '/posts/new/': typeof PostsNewIndexRoute
+  '/posts/$postId/edit/': typeof PostsPostIdEditIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/posts': typeof PostsIndexRoute
   '/posts/$postId': typeof PostsPostIdIndexRoute
+  '/posts/new': typeof PostsNewIndexRoute
+  '/posts/$postId/edit': typeof PostsPostIdEditIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +69,34 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/posts/': typeof PostsIndexRoute
   '/posts/$postId/': typeof PostsPostIdIndexRoute
+  '/posts/new/': typeof PostsNewIndexRoute
+  '/posts/$postId/edit/': typeof PostsPostIdEditIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/posts/' | '/posts/$postId/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/posts/'
+    | '/posts/$postId/'
+    | '/posts/new/'
+    | '/posts/$postId/edit/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/posts' | '/posts/$postId'
-  id: '__root__' | '/' | '/about' | '/posts/' | '/posts/$postId/'
+  to:
+    | '/'
+    | '/about'
+    | '/posts'
+    | '/posts/$postId'
+    | '/posts/new'
+    | '/posts/$postId/edit'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/posts/'
+    | '/posts/$postId/'
+    | '/posts/new/'
+    | '/posts/$postId/edit/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,6 +104,8 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   PostsIndexRoute: typeof PostsIndexRoute
   PostsPostIdIndexRoute: typeof PostsPostIdIndexRoute
+  PostsNewIndexRoute: typeof PostsNewIndexRoute
+  PostsPostIdEditIndexRoute: typeof PostsPostIdEditIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -92,11 +131,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PostsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/posts/new/': {
+      id: '/posts/new/'
+      path: '/posts/new'
+      fullPath: '/posts/new/'
+      preLoaderRoute: typeof PostsNewIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/posts/$postId/': {
       id: '/posts/$postId/'
       path: '/posts/$postId'
       fullPath: '/posts/$postId/'
       preLoaderRoute: typeof PostsPostIdIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/posts/$postId/edit/': {
+      id: '/posts/$postId/edit/'
+      path: '/posts/$postId/edit'
+      fullPath: '/posts/$postId/edit/'
+      preLoaderRoute: typeof PostsPostIdEditIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -107,6 +160,8 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   PostsIndexRoute: PostsIndexRoute,
   PostsPostIdIndexRoute: PostsPostIdIndexRoute,
+  PostsNewIndexRoute: PostsNewIndexRoute,
+  PostsPostIdEditIndexRoute: PostsPostIdEditIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
