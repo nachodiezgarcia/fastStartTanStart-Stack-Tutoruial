@@ -53,4 +53,111 @@ pnpm install
 pnpm dev
 ```
 
-![Fast Start STACK](./assets/image.png)
+![Fast Start STACK](./assets/welcome.png)
+
+
+Now we can create the `tanstart-start-tutorial\src\common\components\Header.tsx`, a simple Header component:
+
+```tsx
+export default function Header() {
+  return (
+    <header className="p-4 bg-gray-200">
+      <h1 className="text-2xl font-bold">Header Component</h1>
+    </header>
+  )
+}
+```
+
+And put it in the `tanstart-start-tutorial\src\routes\__root.tsx`:
+
+```tsx
+import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
+import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
+import { TanStackDevtools } from '@tanstack/react-devtools'
+
+import appCss from '../styles.css?url'
+import Header from '#/common/components/Header'
+
+export const Route = createRootRoute({
+  head: () => ({
+    meta: [
+      {
+        charSet: 'utf-8',
+      },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1',
+      },
+      {
+        title: 'TanStack Start Starter',
+      },
+    ],
+    links: [
+      {
+        rel: 'stylesheet',
+        href: appCss,
+      },
+    ],
+  }),
+  shellComponent: RootDocument,
+})
+
+function RootDocument({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <head>
+        <HeadContent />
+      </head>
+      <body>
+        <Header />
+        {children}
+        <TanStackDevtools
+          config={{
+            position: 'bottom-right',
+          }}
+          plugins={[
+            {
+              name: 'Tanstack Router',
+              render: <TanStackRouterDevtoolsPanel />,
+            },
+          ]}
+        />
+        <Scripts />
+      </body>
+    </html>
+  )
+}
+```
+
+Now change the info no the index page:
+
+```tsx
+import { createFileRoute } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/')({ component: Home })
+
+function Home() {
+  return (
+    <div className="p-8">
+      <h1>Hello world!!</h1>
+    </div>
+  )
+}
+```
+
+Then you can see the changes in the browser:
+
+![simple header](assets/header.png)
+
+
+## Now let's add a new page to the project:
+
+Create a new file `tanstart-start-tutorial\src\routes\about.tsx`:
+
+### And it will automatically add you the code for the route.
+
+You only have to do a `pnpm dev` and you will see the new page in the browser:
+
+![simple about](assets/about.png)
+
+## And that's all for this fast start tutorial :)
