@@ -268,5 +268,45 @@ Now you can access to the `edit post` page with `http://localhost:3000/posts/din
 
 ![edit post](assets/edit-post.png)
 
+## Lets put a layout to the post pages:
+
+You can create a layout for the post pages by creating a new file `tanstart-start-tutorial\src\routes\posts\route.tsx`:
+
+```tsx
+import { createFileRoute } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/posts')({
+  component: RouteComponent,
+})
+
+function RouteComponent() {
+  return <div>Information of posts that is always there</div>
+}
+```
+
+![posts layout](assets/posts-layout.png)
+
+And it's good, but we don't see the content of the child routes.
+
+And then you can use the `Outlet` component to render the child routes:
+
+```tsx
+import { createFileRoute, Outlet } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/posts')({
+  component: RouteComponent,
+})
+
+function RouteComponent() {
+  return (
+    <div>
+      <p>Information of posts that is always there</p>
+      <Outlet />
+    </div>
+  )
+}
+```
+
+![posts layout](assets/posts-layout_2.png)
 
 ## And that's all for this fast TanStart Stack tutorial :)
