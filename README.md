@@ -196,4 +196,16 @@ function RouteComponent() {
 }
 ```
 
+## Dynamic routing
+
+Let's now create a post page with a dynamic route `tanstart-start-tutorial\src\routes\posts\$postId.tsx`:
+
+You need to create first the post directory and then the file `index.tsx` inside it.
+
+And then to do the dynamic routing you have to create a folder with the name of the parameter with a `$` at the beginning and then create the `index.tsx` file inside it.
+
+And that's how you can create a dynamic route with the file router mode of the Fast Start STACK.
+
+![simple dynamic routing](assets/dynamic-routing.png)
+
 ## And that's all for this fast start tutorial :)
