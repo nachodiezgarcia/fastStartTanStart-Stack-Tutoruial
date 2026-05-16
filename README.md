@@ -129,7 +129,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 }
 ```
 
-Now change the info no the index page:
+Now change the info on the index page:
 
 ```tsx
 import { createFileRoute } from '@tanstack/react-router'
@@ -160,9 +160,9 @@ You only have to do a `pnpm dev` and you will see the new page in the browser:
 
 ![simple about](assets/about.png)
 
-## Non the less, the users don't navigate normaly with the URL, so we need to add a link to the about
+## Nonetheless, the users don't navigate normally with the URL, so we need to add a link to the about
 
-So I put a link on both home and about page to navigate between them:
+So I put a link on both the home and about pages to navigate between them:
 
 ```tsx
 import { createFileRoute, Link } from '@tanstack/react-router'
