@@ -1,7 +1,7 @@
-# Creating a Fast Start STACK Tutorial
-## FastStart STACK Tutorial
+# Creating a Fast TanStart STACK Tutorial
+## Fast TanStart STACK Tutorial
 
-This command will prompt you to select a template. Choose the "STACK" template to create a new project with the Fast Start STACK configuration.
+This command will prompt you to select a template. Choose the "STACK" template to create a new project with the Fast TanStart STACK configuration.
 
 ```bash
 pnpm create @tanstack/start@latest
@@ -210,4 +210,23 @@ And that's how you can create a dynamic route on TanStack Start.
 
 ![simple dynamic routing](assets/dynamic-routing.png)
 
-## And that's all for this fast start tutorial :)
+Now to use the dynamic parameter you can use the `useParams` hook:
+
+```tsx
+import { createFileRoute } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/posts/$postId/')({
+  component: RouteComponent,
+})
+
+function RouteComponent() {
+  const { postId } = Route.useParams();
+  return <div>Hello {postId}!</div>
+}
+```
+
+So now if you go to `http://localhost:3000/posts/dinamic` you will see the message "Hello dinamic!".
+
+![dynamic post](assets/dynamic-post-useParams.png)
+
+## And that's all for this fast TanStart Stack tutorial :)
